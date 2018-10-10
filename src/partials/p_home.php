@@ -82,7 +82,7 @@ class Home_Partial {
             $user->conf->header("Sign in", "home");
         else
             $user->conf->header("Home", "home");
-        echo '<noscript><div class="msg msg-error"><strong>This site requires JavaScript.</strong> Your browser does not support JavaScript.<br><a href="https://github.com/kohler/hotcrp/">Report bad compatibility problems</a></div></noscript>', "\n";
+
         if ($user->privChair)
             echo '<div id="clock_drift_container"></div>';
     }
@@ -153,12 +153,14 @@ class Home_Partial {
     }
 
     function render_message(Contact $user) {
-        if (($t = $user->conf->_i("home", false)))
+        if (($t = $user->conf->_i("home", false)))
             $user->conf->infoMsg($t);
     }
 
     function render_welcome(Contact $user) {
-        echo '<div class="homegrp">Welcome to the ', htmlspecialchars($user->conf->full_name()), " submissions site.";
+		
+  
+     echo '<div class="homegrp">Welcome to the ', htmlspecialchars($user->conf->full_name()), " submissions site.";
         if (($site = $user->conf->opt("conferenceSite"))
             && $site !== $user->conf->opt("paperSite"))
             echo " For general conference information, see ", Ht::link(htmlspecialchars($site), htmlspecialchars($site)), ".";
